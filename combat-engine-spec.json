@@ -1,0 +1,70 @@
+{
+  "name": "Combat Engine",
+  "description": "Handles dice-based combat mechanics",
+  "tools": [
+    {
+      "name": "roll_dice",
+      "description": "Roll dice with modifiers",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dice": {
+            "type": "string",
+            "description": "Dice notation (e.g., '1d20+5')"
+          }
+        },
+        "required": ["dice"]
+      }
+    },
+    {
+      "name": "start_combat",
+      "description": "Initialize combat encounter",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string"},
+                "initiative": {"type": "number"}
+              }
+            }
+          }
+        },
+        "required": ["participants"]
+      }
+    },
+    {
+      "name": "next_turn",
+      "description": "Advance to next combat turn"
+    },
+    {
+      "name": "attack",
+      "description": "Perform attack roll",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "attacker": {"type": "string"},
+          "target": {"type": "string"},
+          "attack_bonus": {"type": "number"}
+        },
+        "required": ["attacker", "target"]
+      }
+    },
+    {
+      "name": "apply_damage",
+      "description": "Apply damage to target",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "target": {"type": "string"},
+          "damage": {"type": "number"},
+          "damage_type": {"type": "string"}
+        },
+        "required": ["target", "damage"]
+      }
+    }
+  ]
+}
