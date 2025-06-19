@@ -1,0 +1,19 @@
+This commit completes the transition to a World of Darkness engine by overhauling the AI's instructions and client-side assets to match the new server capabilities. The system now supports a fully interactive, choice-based gameplay loop.
+
+**Key Changes:**
+
+**1. New Interactive Storyteller Mode:**
+- The primary `.roomodes` file has been replaced with a new `storyteller-wod` mode.
+- **Choice-Based Progression:** The AI is now instructed to use a "Describe -> Ask -> Resolve" loop, presenting players with meaningful choices via the `ask` tool for all narrative and mechanical actions.
+- **Interactive Character Creation:** Character creation is no longer automated. The AI now guides the player through a step-by-step point-buy process using the `ask` tool.
+- **Strict Rule Constraints:** The AI's instructions include explicit rules for valid JSON formatting and core WoD character creation (e.g., the "one-dot minimum", point-buy costs) to prevent invalid data generation.
+- **Updated Permissions:** The mode now has `ask` and `command` permissions to enable the interactive workflow and file management for character sheets.
+
+**2. New WoD-Specific Assets:**
+- **`character-sheet-wod-template.md`**: A new, thematically appropriate character sheet template has been added to represent WoD character stats, including "dots" and Health Levels.
+- **`wod-quickstart-guide.md`**: A new quickstart guide has been created to explain the WoD mechanics and new toolset to the user.
+
+**3. Cleanup of Obsolete D&D Files:**
+- All D&D 5e-related templates, guides, and specifications (`character-sheet.md`, `dnd5e-character-creation-guide.md`, `combat-engine-spec.json`, etc.) have been removed to prevent confusion and ensure the AI uses the correct reference material.
+
+This completes the full system overhaul, aligning the AI's behavior and the user-facing assets with the new interactive World of Darkness engine.
