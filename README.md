@@ -1,53 +1,85 @@
 # AI World of Darkness Experiment with Roo Code
 
-This repository is the central hub for running interactive, AI-driven World of Darkness chronicles using Roo Code. It contains the AI instructions, character sheet templates, and campaign files needed to bring the gothic-punk world to life.
+This repository is the central hub for running interactive, AI-driven World of Darkness chronicles using Roo Code. It contains all AI mode instructions, sheet templates, and the client logic for a fully interactive, choice-driven immersive tabletop experience—now powered by authentic, server-side WoD rules.
 
-This project works in conjunction with the [Unified WoD MCP Servers](https://github.com/SmokePigDad/rpg-mcp-servers), which handle all game mechanics and data persistence.
+---
 
-## Overview
+## 🌙 What's New!
 
-The goal of this project is to create a truly interactive and visually rich storytelling experience. Instead of just commanding an AI, you will be guided through the story with meaningful choices. The AI acts as your personal Storyteller, managing the rules and narrative, while you make all the important decisions for your character.
+- **Total World of Darkness Overhaul**: Supports Vampire: the Masquerade, Werewolf, Mage, Changeling, Wraith, and Mummy with native tools for all supernatural types (pre-Time of Judgment setting).
+- **Narrative Choice Engine**: Uses the new "Describe → Ask → Resolve" method—AI sets the scene, presents you with choices, and transparently resolves your actions using backend servers for fairness and surprise. Every player action is YOUR choice.
+- **Interactive Character Creation**: No more single-prompt characters. The AI walks you step-by-step through point-buy for attributes, abilities, powers, backgrounds, and everything else, enforcing all WoD rules server-side.
+- **Graphical HTML Character Sheets & Visual Health**: Instantly generate stunning, sourcebook-style HTML sheets and visual health trackers straight from your in-game data.
+- **True XP & Progression Menu**: Spend experience points interactively with real-time cost checks (attributes, virtues, disciplines, willpower, more). No cheating, no math slip-ups!
+- **Dynamic Status & Feedback**: All health, damage, and resource spending (blood, rage, gnosis, etc.) resolved with visual feedback and proper checks.
+- **Server-Enforced Integrity**: All game mechanics happen server-side—no client fudge, all changes are validated.
+- **Full Crossover Capability**: Play with and against any combo of WoD splats in the same chronicle.
 
-### **Newest Features!**
-- **Graphical HTML Character Sheets:** Generate a full, beautifully styled character sheet that looks like it's straight from a sourcebook.
-- **Visual Health Tracker:** Instantly see your character's damage levels and wound penalties in a clear, thematic format.
-- **Rules-Enforced XP Spending:** Spend experience points through a guided, interactive menu where the costs are calculated and enforced by the server, ensuring game balance.
+---
 
-## The Interactive Gameplay Loop
+## 🕯️ The AI Storyteller Loop
 
-This project is built around a core "Describe -> Ask -> Resolve" loop:
-1.  **Describe:** The Storyteller AI sets the scene.
-2.  **Ask:** The AI pauses and presents you with a set of clear, meaningful choices on how your character can act.
-3.  **Resolve:** Once you choose, the AI uses powerful backend tools to resolve the action's mechanics and then narrates the rich outcome.
+This project is built on a "Describe → Ask → Resolve" gameplay cycle:
+1. **Describe**: The AI sets the scene based on world and character history.
+2. **Ask**: You are presented with 3-5 meaningful choices—always in your character's voice.
+3. **Resolve**: Once you choose, the AI calls backend tools (`perform_roll`, `resolve_attack`, etc.) and narrates the consequences faithfully.
+
+_All behind-the-scenes dice, power effects, XP costs, and wounds are resolved through powerful MCP (Model Context Protocol) servers, guaranteeing system integrity and drama at every action._
 
 **Example:**
-> **AI Storyteller:** The thug takes a swing at you! *(The AI calls `resolve_attack`, which handles all the dice rolls internally)*. The attack connects! He suffers 2 levels of bashing damage.
->
-> *(The AI then calls `display_health`)*
->
-> **AI Storyteller:** Here is his current status:
-> Health Status:
-> `[X][X][/][/][ ][ ][ ] Wounded (-2)`
->
-> He's looking hurt. What do you do?
-> **[A]** Press the attack.
-> **[B]** Try to talk him down.
-> **[C]** Flee the scene.
+```
+AI: The Tremere Regent narrows her eyes. "Are you loyal to the Camarilla, neonate?"
+1. Lie convincingly (Manipulation + Subterfuge)
+2. Assert your position—demand respect (Charisma + Leadership)
+3. Subtly threaten with your supernatural Presence
+4. Remain silent and let her judge
+```
+You choose, and the AI resolves everything with correct rolls and effects.
 
-## Key Components
+---
 
-- **`.roomodes`**: Contains the configuration for the `💀 WoD Storyteller (Interactive)` AI mode. This file is the "brain" of the AI.
-- **`character-sheet-wod-template.md`**: A markdown template used as a base for character notes.
-- **`wod-quickstart-guide.md`**: A guide explaining the mechanics and how to interact with the Storyteller AI.
-- **`campaigns/`**: Where your campaign-specific data will be stored by the AI. (Note: This directory is in `.gitignore`).
+## 🧩 Repository Structure
 
-## Getting Started
+- **`.roomodes`**: Defines the 💀 WoD Storyteller (Interactive) mode, including AI instructions, permissions, and workflow.
+- **`character-sheet-wod-template.md`**: The core character notes template, with WoD-style "dot" ratings and health levels.
+- **`wod-quickstart-guide.md`**: Quick guide to system rules and interactive play.
+- **`campaigns/`**: Where all campaign and character files are auto-generated by the system (not version-controlled by default).
 
-1.  **Set up the MCP Servers**: Clone and configure the [Unified WoD MCP Servers](https://github.com/SmokePigDad/rpg-mcp-servers) as per the instructions in their README. Ensure both servers are running.
-2.  **Configure Roo Code**:
-    - Ensure your Roo Code `mcp_settings.json` is correctly pointing to the running MCP servers.
-    - Open this folder (`oWoD-Game-Experiment`) as your workspace root in VS Code. Roo Code will automatically detect and load the Storyteller mode.
-3.  **Start a Chronicle**:
-    - Activate the `💀 WoD Storyteller (Interactive)` mode in Roo Code.
-    - Ask the AI to create a character. It will guide you through the process interactively.
-    - Ask it to "generate a fancy character sheet" to see the new HTML feature!
+---
+
+## 🚀 Getting Started
+
+1. **Set up the [Unified WoD MCP Servers](https://github.com/SmokePigDad/rpg-mcp-servers)**:
+   - Clone, install, and run `game-state-server` and `combat-engine-server`.
+   - These provide all dice, sheet, XP, magic, and combat automation—no local dice, no fudge.
+
+2. **Configure Roo Code:**
+   - Connect both MCP servers in your `mcp_settings.json`.
+   - Open this folder as your Visual Studio Code workspace root. Roo Code recognizes the `storyteller-wod` mode automatically.
+
+3. **Play a Chronicle:**
+   - Activate the 💀 WoD Storyteller (Interactive) mode in Roo Code.
+   - Ask the AI to start character creation, or dive into the story and face your first dilemma.
+   - Use the "generate a fancy character sheet" or "show my health" features at any time—it's all live and visual.
+
+---
+
+## ⚡ Key Innovations
+
+- **Always Player-Led**: The AI NEVER chooses your actions—every dramatic beat is an explicit player choice.
+- **Full Rules-Binding**: No handwaving XP, wounds, or supernatural effects. All are validated on the server, using actual WoD rules.
+- **Visual Immersion**: Instantly create sourcebook-style HTML sheets and health summaries after key events.
+- **PC/NPC Parity**: All characters—player or nonplayer—are built, tracked, and held to the same rigorous story and mechanical standards.
+
+---
+
+## ✨ Example Interactive Features
+
+- **Choice-Based Scenes**: Every major action is a player-presented choice—no railroading.
+- **Combat Resolution**: All mechanics happen under the hood; just narrate your tactic and watch the server determine the outcome.
+- **Experience Menus**: Use XP exactly as you would with a live ST, but free from math errors.
+- **Campaign Logs & Journals**: AI will update story journals and campaign notes as actions unfold.
+
+---
+
+**Start your own gothic-punk epic—where every choice has weight, every power is real, and the Storyteller System finally lives up to its name.**
